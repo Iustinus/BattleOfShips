@@ -15,11 +15,14 @@ public:
 	bool isFinished();
 	bool isComplete();
 	bool isBusy(string input);
+	bool checkRight(int row, int col, int shipType);
+	bool checkLeft(string input);
 	bool checkCorectness(string input);
 	void placeShips();
 	void clearBoard();
 	void printBoard();
-	void calculatePosition(string input);
+	//void calculatePosition(string input);
+	void calcPlaceShip(string input, int shipType);
 	void placeSingleShip(int shipType, int row, int col, char direction);
 
 

@@ -54,7 +54,7 @@ bool Board::checkRight(int row, int col, int shipType)
 	}
 	else
 	{
-		cout << "Statek poza tablica" << endl;
+		cout << "Pozycja niedopuszczalna" << endl;
 		return false;
 	}
 	
