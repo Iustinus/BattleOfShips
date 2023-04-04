@@ -21,7 +21,6 @@ int main()
 	catch (const out_of_range& err)
 	{
 		cout << err.what() << endl; //wyj¹tek - tak dla zabawy
-
 	}
 	board1.printBoard();
 

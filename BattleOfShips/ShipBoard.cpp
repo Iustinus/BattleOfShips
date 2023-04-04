@@ -58,6 +58,7 @@ void Board::placeShips()
 		while (!allShipsSet)
 		{
 			int shipType = 0;
+			int shipSet = 0;
 			for (int i = 4; i >= 1; i--)
 			{
 				shipType = 5-i;
@@ -76,7 +77,7 @@ void Board::placeShips()
 						getline(cin, input);
 						char direction = input[0];
 						this->placeSingleShip(4, rowToPlace, colToPlace, direction);
-						//allShipsSet = true;
+						shipSet++ ;
 					}
 					else
 					{
@@ -98,7 +99,7 @@ void Board::placeShips()
 							getline(cin, input);
 							char direction = input[0];
 							this->placeSingleShip(3, rowToPlace, colToPlace, direction);
-							//allShipsSet = true;
+							shipSet++;
 						}
 						else
 						{
@@ -120,7 +121,7 @@ void Board::placeShips()
 							getline(cin, input);
 							char direction = input[0];
 							this->placeSingleShip(2, rowToPlace, colToPlace, direction);
-							//allShipsSet = true;
+							shipSet++;
 						}
 						else
 						{
@@ -142,7 +143,7 @@ void Board::placeShips()
 							getline(cin, input);
 							char direction = input[0];
 							this->placeSingleShip(1, rowToPlace, colToPlace, direction);
-							//allShipsSet = true;
+							shipSet++;
 						}
 						else
 						{
@@ -156,6 +157,10 @@ void Board::placeShips()
 					break;
 				
 				}
+
+			}
+			if (shipSet == 10) {
+				allShipsSet = true;
 			}
 	}
 }
