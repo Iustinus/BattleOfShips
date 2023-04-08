@@ -6,17 +6,16 @@
 using namespace std;
 
 class Board
-{
-	
-	
+{	
 public:
-
 	Board();	
 	bool isFinished();
 	bool isComplete();
 	bool isBusy(string input);
 	bool checkRight(int row, int col, int shipType);
-	bool checkLeft(string input);
+	bool checkLeft(int row, int col, int shipType);
+	bool checkUp(int row, int col, int shipType);
+	bool checkDown(int row, int col, int shipType);
 	bool checkCorectness(string input);
 	void placeShips();
 	void clearBoard();
@@ -24,10 +23,7 @@ public:
 	//void calculatePosition(string input);
 	void calcPlaceShip(string input, int shipType);
 	void placeSingleShip(int shipType, int row, int col, char direction);
-
-
-private:
-	
+private:	
 	const int MAX_SIZE = 11;
 	string input;
 	char myBoardPtr[11][11];

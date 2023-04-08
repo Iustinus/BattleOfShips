@@ -37,33 +37,6 @@ bool Board::isComplete()
 {
 	return false;
 }
-bool Board::checkRight(int row, int col, int shipType)
-{
-	if (col+shipType<=11 && row>=1 % row <=11)
-	{
-		for (int i = col; i < col+shipType; i++) 
-		{
-			if ((myBoardPtr[row][i] != ' ') || (myBoardPtr[row - 1][i] != ' ') || (myBoardPtr[row + 1][i] != ' '))
-			{
-				cout << "Pole zajete lub sasiadujace z innym" << endl;
-				break;
-			}
-			
-		}
-		return true;
-	}
-	else
-	{
-		cout << "Statek poza tablica" << endl;
-		return false;
-	}
-	
-	
-}
-bool Board::checkLeft(string input)
-{
-	return false;
-}
 
 bool Board::checkCorectness(string input)
 {
@@ -123,10 +96,8 @@ void Board::placeShips()
 					break;
 				default:
 					throw out_of_range("Wybierz 1, 2, 3, lub 4 masztowca");
-					break;
-				
+					break;				
 				}
-
 			}
 			if (shipSet == 10) {
 				allShipsSet = true;
@@ -207,16 +178,13 @@ void Board::calcPlaceShip(string input, int shipType)
 		getline(cin, direction);
 
 		char dirChar = direction[0];
-		char shipSym = static_cast<char>(shipType + 48); //rzutowanie na char
-
-		  
+		char shipSym = static_cast<char>(shipType + 48); //rzutowanie na char		  
 		switch (dirChar)
 		{
 		case 'g':
 		case 'G':
-		{
-			
-			if ((row - shipType - 1 >= 1))
+		{			
+			if (this->checkUp(row,col,shipType) == true && (row - shipType - 1 >= 1))
 			{
 				for (int p = row; p > row - shipType; p--)
 				{
@@ -234,7 +202,7 @@ void Board::calcPlaceShip(string input, int shipType)
 		case 'd':
 		case 'D':
 		{
-			if ((row + shipType - 1 <= 11))
+			if (this->checkDown(row,col,shipType)== true && (row + shipType - 1 <= 11))
 			{
 				for (int p = row; p < row + shipType; p++)
 				{
@@ -252,7 +220,7 @@ void Board::calcPlaceShip(string input, int shipType)
 		case 'l':
 		case 'L':
 		{
-			if (col - shipType - 1 >= 1)
+			if (this->checkLeft(row,col, shipType) == true && (col - shipType - 1 >= 1))
 			{
 				for (int p = col; p > col - shipType; p--)
 				{
@@ -288,5 +256,86 @@ void Board::calcPlaceShip(string input, int shipType)
 		default:
 			break;
 		}
+	}
+}
+bool Board::checkRight(int row, int col, int shipType)
+{
+	if (col + shipType <= 11 && row >= 1 && row <= 11)
+	{
+		for (int i = col; i < col + shipType; i++)
+		{
+			if ((myBoardPtr[row][i] != ' ') || (myBoardPtr[row - 1][i] != ' ') || (myBoardPtr[row + 1][i] != ' '))
+			{
+				cout << "Pole zajete lub sasiadujace z innym" << endl;
+				return false;
+			}
+
+		}
+		return true;
+	}
+	else
+	{
+		cout << "Statek poza tablica" << endl;
+		return false;
+	}
+}
+bool Board::checkLeft(int row, int col, int shipType)
+{
+	if (col - shipType >= 1 && row >= 1 && row <= 11)
+	{
+		for (int i = col; i > col - shipType; i--)
+		{
+			if ((myBoardPtr[row][i] != ' ') || (myBoardPtr[row - 1][i] != ' ') || (myBoardPtr[row + 1][i] != ' '))
+			{
+				cout << "Pole zajete lub sasiadujace z innym" << endl;
+				return false;
+			}
+		}
+		return true;
+	}
+	else
+	{
+		cout << "Statek poza tablica" << endl;
+		return false;
+	}
+}bool Board::checkUp(int row, int col, int shipType)
+{
+	if (row - shipType >= 1 && col >= 1 && col <= 11)
+	{
+		for (int i = row; i > row - shipType; i--)
+		{
+			if ((myBoardPtr[i][col] != ' ') || (myBoardPtr[i][col - 1] != ' ') || (myBoardPtr[i][col + 1] != ' '))
+			{
+				cout << "Pole zajete lub sasiadujace z innym" << endl;
+				return false;
+			}
+		}
+		return true;
+	}
+	else
+	{
+		cout << "Statek poza tablica" << endl;
+		return false;
+	}
+}
+bool Board::checkDown(int row, int col, int shipType)
+{
+	if (row + shipType <= 11 && col >= 1 && col <= 11)
+	{
+		for (int i = row; i < row + shipType; i++)
+		{
+			if ((myBoardPtr[i][col] != ' ') || (myBoardPtr[i][col - 1] != ' ') || (myBoardPtr[i][col + 1] != ' '))
+			{
+				cout << "Pole zajete lub sasiadujace z innym" << endl;
+				return false;
+			}
+
+		}
+		return true;
+	}
+	else
+	{
+		cout << "Statek poza tablica" << endl;
+		return false;
 	}
 }
