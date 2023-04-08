@@ -3,6 +3,12 @@
 
 using namespace std;
 
+/*TODO 
+- 2 player interface
+- board dynamic allocation
+- TCP data exchange
+- coloring texts and shpis
+*/
 
 int main()
 {
